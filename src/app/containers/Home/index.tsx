@@ -1,4 +1,5 @@
 import * as React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 import {increment, decrement} from '../../redux/modules/home';
 import {ICounter, ICounterAction} from '../../models/home';
 const {connect} = require('react-redux');
@@ -27,17 +28,15 @@ class Home extends React.Component<IProps, any> {
     return (
       <div className={s.counter}>
         <h4>Counter Example</h4>
-        <button
+        <RaisedButton
           name="incBtn"
-          onClick={increment}>
-          INCREMENT
-        </button>
-        <button
+          label="Increment"
+          onClick={increment} />          
+        <RaisedButton
           name="decBtn"
+          label="Decrement"
           onClick={decrement}
-          disabled={home.count <= 0}>
-          DECREMENT
-        </button>
+          disabled={home.count <= 0} />          
         <p>{home.count}</p>
       </div>
     );
