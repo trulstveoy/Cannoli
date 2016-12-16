@@ -11,6 +11,9 @@ var config = {
     head: {
       title: 'Cannoli',
       titleTemplate: 'Cannoli: %s',
+      link: [
+        {"rel": "stylesheet", "href": "https://fonts.googleapis.com/css?family=Roboto:300,400,500"},
+      ],
       meta: [
         { charset: 'utf-8' },
         { 'http-equiv': 'x-ua-compatible', content: 'ie=edge' },
