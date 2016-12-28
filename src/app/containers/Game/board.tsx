@@ -1,10 +1,32 @@
 import * as React from 'react';
-import {Square} from './square';
+import {click} from '../../redux/modules/game'
+const {connect} = require('react-redux');
 
-export class Board extends React.Component<any, any> {
-  renderSquare(i) {
-    return <Square />;
+function Square(props){
+    return (
+      <button className="square" onClick={props.handleClick}>
+        {/* TODO */}
+      </button>
+    );
+}
+
+
+@connect(
+  state => ({
+    game: state.game
+  }),
+  dispatch => ({
+    click: () => dispatch(click())
+  })
+)
+export class Board extends React.Component<any, any> {  
+
+  renderSquare(index:number) {
+    const {click} = this.props;
+
+    return <Square index={index} handleClick={click} />;
   }
+
   render() {
     const status = 'Next player: X';
     return (

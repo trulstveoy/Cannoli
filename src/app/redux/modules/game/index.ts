@@ -19,7 +19,7 @@ export function validate(bar:any) : any {
     }
 }
 
-export function foo(bar:any) : any {
+export function click() : any {
     return {
         type: 'test'
     }
