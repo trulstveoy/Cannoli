@@ -2,29 +2,20 @@ import * as React from 'react';
 import {click} from '../../redux/modules/game'
 const {connect} = require('react-redux');
 
-function Square(props){
-    return (
-      <button className="square" onClick={props.handleClick}>
-        {/* TODO */}
-      </button>
-    );
-}
-
-
 @connect(
   state => ({
-    game: state.game
+    squares: state.game.squares
   }),
   dispatch => ({
-    click: () => dispatch(click())
+    click: index => dispatch(click(index))
   })
 )
 export class Board extends React.Component<any, any> {  
 
   renderSquare(index:number) {
-    const {click} = this.props;
+    const {click, squares} = this.props;
 
-    return <Square index={index} handleClick={click} />;
+    return <Square value={squares[index]} handleClick={() => click(index)} />;
   }
 
   render() {
@@ -50,4 +41,12 @@ export class Board extends React.Component<any, any> {
       </div>
     );
   }
+}
+
+function Square(props){
+    return (
+      <button className="square" onClick={props.handleClick}>
+        {props.value}
+      </button>
+    );
 }

@@ -1,27 +1,26 @@
+
+export const CLICK: string = 'game/CLICK';
+
 const initialState = {
-  x: 0
+  squares: Array(9).map(() => null)
 };
 
 export function gameReducer(state = initialState, action) {
-   return state;
+    if(action.type !== CLICK)
+        return state;
+    const newState = {
+        squares: state.squares.slice()
+    }    
+   
+   newState.squares[action.index] = 'X';
+   
+   return newState;
 }
 
-export function test() {
+export function click(index) : any {
     return {
-        type: 'test'
-    }
-}
-
-
-export function validate(bar:any) : any {
-    return {
-        type: 'test'
-    }
-}
-
-export function click() : any {
-    return {
-        type: 'test'
+        type: CLICK,
+        index: index
     }
 }
 
