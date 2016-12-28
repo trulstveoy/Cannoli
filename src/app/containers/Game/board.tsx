@@ -4,7 +4,7 @@ const {connect} = require('react-redux');
 
 @connect(
   state => ({
-    squares: state.game.squares
+    state: state.game
   }),
   dispatch => ({
     click: index => dispatch(click(index))
@@ -13,9 +13,9 @@ const {connect} = require('react-redux');
 export class Board extends React.Component<any, any> {  
 
   renderSquare(index:number) {
-    const {click, squares} = this.props;
+    const {click, state} = this.props;
 
-    return <Square value={squares[index]} handleClick={() => click(index)} />;
+    return <Square value={state.squares[index]} handleClick={() => click(index)} />;
   }
 
   render() {
@@ -45,7 +45,7 @@ export class Board extends React.Component<any, any> {
 
 function Square(props){
     return (
-      <button className="square" onClick={props.handleClick}>
+      <button className="square" onClick={props.handleClick} disabled={props.value}>
         {props.value}
       </button>
     );
