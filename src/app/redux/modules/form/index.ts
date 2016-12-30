@@ -1,29 +1,28 @@
 import {IFormAction} from '../../../models/form';
 
+export const SAVE = 'form/SAVE';
+export const CHANGEVALUE = 'form/CHANGEVALUE';
+
 const initialState = {
-  x: 0
+  name: '',
+  birthdate: undefined
 };
 
-export function formReducer(state = initialState, action) {
+export async function formReducer(state = initialState, action) {
    return state;
 }
 
-export function test() {
+export function changeValue(key:string, value:any){
     return {
-        type: 'test'
+        type: CHANGEVALUE,
+        key: key,
+        value:value
     }
 }
 
-
-export function validate(bar:any) : any {
+export function save() : any {
     return {
-        type: 'test'
-    }
-}
-
-export function foo(bar:any) : any {
-    return {
-        type: 'test'
+        type: SAVE        
     }
 }
 

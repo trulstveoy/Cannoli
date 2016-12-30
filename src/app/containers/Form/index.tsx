@@ -1,13 +1,36 @@
 import * as React from 'react';
-import {validate, foo} from '../../redux/modules/form';
+import {connect} from 'react-redux';
+import TextField from 'material-ui/TextField';
+import DatePicker from 'material-ui/DatePicker';
+import RaisedButton from 'material-ui/RaisedButton';
+import {changeValue, save} from '../../redux/modules/form';
 
-export function Form(props:any){
-    return (
-        <form>
-            <label>test</label>
-            <div>4 Hello Forms</div>
+var injectTapEventPlugin = require("react-tap-event-plugin");
+injectTapEventPlugin();
 
-            <input type="submit" value="Submit" />
-        </form>
-    );
+@connect(
+  state => ({
+    state: state.form
+  }),
+  dispatch => ({    
+    handleChange: event => 
+        dispatch(changeValue(event.target.id, event.target.value)),
+    handleDateChange: (event, date) =>
+        dispatch(changeValue('birthdate', date)),
+    handleClick: () =>
+        dispatch(save())
+  })
+)
+export class Form extends React.Component<any, any> {  
+    render(){
+        const {handleChange, handleDateChange, handleClick} = this.props;
+
+        return (
+            <div>
+                <TextField id="name" floatingLabelText="Name" onChange={handleChange} />
+                <DatePicker id="birthdate" hintText="Birthdate" container="inline" mode="landscape" autoOk={true} onChange={handleDateChange} />               
+                <RaisedButton label="Save" onClick={handleClick} />                
+            </div>        
+        );
+    }
 }
